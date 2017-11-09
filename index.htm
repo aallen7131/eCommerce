@@ -9,12 +9,33 @@
 		</style>
 		
 		<script>
-		funtion totalitems ()
-		var output = doucment.getElementById ("output");
-		var items  = document.getElementById ("items");
-		var cusSub = rPrice1 * Qty1 + rPrice2 * Qty2 + rPrice3 * Qty3
-		var comSub = wPrice1 * Qty1 + wPrice2 * Qty2 + wPrice3 * Qty3
+		funtion items (){
+		var output = document.getElementById ("output");
+		var Qty1 = document.getElementById ("Qty1");
+		var Qty2 = document.getElementById ("Qty2");
+		var Qty3 = document.getElementById ("Qty3");
 		
+		var customerSubtotal = 200.00 * parseInt(qty1.value) + 1200.00 parseInt(qty2.value) + 945.00 * parseInt(qty3.value);
+		var companySubtotal = 195.00 * parseInt(qty1.value) + 1195.00 parseInt(qty2.value) + 940.00 * parseInt(qty3.value);
+		
+		
+		var tax = customerSubtotal * (5.00/100);
+		var profit = customerSubtotal - companySubtotal;
+		
+		var shipping = 0;
+			if (customerSubtotal < 150){
+				Shipping += 10;
+		}
+			else if (customerSubtotal >= 150 && CustomerSubtotal <= 500){
+				Shipping += 5;
+		}
+			else{
+				Shipping += 0;
+		}
+		
+		var totalMoney = CustomerSubtotal + tax + shipping;
+		
+		var totalItemsSold = parseInt(qty1.value) + parseInt(qty2.value) + parseInt(qty3.value);
 		
 		var build += "";
 	    build += "<br>";
@@ -22,13 +43,19 @@
 		build += "Company Subtotal is $" + comSub.tofixed(1) + "<br>" ;
 		build += "Company's profit is $" + profit.tofixed(1) + "<br>" ;
 		build += "<br>";
-		build += "There is a total of"
+		build += "There is a total of" + totalItemsSold + "Items in Your cart" + "<br>" ;
+		build += "<br>";
+		build += "The tax is $" + tax.toFixed(1) + "<br>" ;
+		build += "The shipping is $" + shipping + "<br>" ;
+		build += "------------------------------------------------" + "<br>" ;
+		build += "THE TOTAL AMOUNT IS $" + totalMoney.toFixed(1) + "<br>" ;
 		
-		
-		
-		
+		output.innerHTML = build;
+	    }
 		</script>
+		
 	</head>
+	
 	<body>
 		<div>
 			<h1> Black Leather Boots <h1>
@@ -37,12 +64,17 @@
 			<p>  New black leather Chelsea boots. Get them while supplies last! </P>
 			Quantity <input type= "text" id="quantity1" >
 			
+		</div>
+			
+		<div>	
 			<h1> Gucci Shoulder bag   <h1>			
 			<img src = "bag.jpg" ><br>
 			<span> $1200.00 </span>
 			<p>  New gucci Marmont small velvet shoulder bag  </P>
 			Quantity <input type= "text" id="quantity2" >
-				
+		</div>		
+		
+		<div>
 			<h1> Tan suede Boots  <h1>			
 			<img src = "boots2.jpg" ><br>
 			<span> $945.00 </span>
